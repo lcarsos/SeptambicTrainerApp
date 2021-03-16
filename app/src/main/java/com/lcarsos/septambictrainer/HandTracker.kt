@@ -1,5 +1,6 @@
 package com.lcarsos.septambictrainer
 
+import android.content.Intent
 import android.graphics.Point
 import android.graphics.Rect
 
@@ -22,13 +23,13 @@ class HandTracker {
     }
 
     fun getValue(): KeyerValue {
-        return KeyerValue.valueOf((if (pinky.active) pinky.bitmask else 0) or
+        return KEYER[(if (pinky.active) pinky.bitmask else 0) or
                 (if (ring.active) ring.bitmask else 0) or
                 (if (middle.active) middle.bitmask else 0) or
                 (if (index.active) index.bitmask else 0) or
                 (if (center.active) center.bitmask else 0) or
                 (if (near.active) near.bitmask else 0) or
-                (if (far.active) far.bitmask else 0))
+                (if (far.active) far.bitmask else 0)]
     }
 
     fun registerTouch(point: Point): FingerTracker? {

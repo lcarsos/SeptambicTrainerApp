@@ -90,5 +90,5 @@ class SeptambicView(context: Context, attrs: AttributeSet): View(context, attrs)
     fun drawCircle(canvas: Canvas, touch: Point, color: Int) {
         bubblePaint.color = color
         canvas.drawCircle(touch.x.toFloat(), touch.y.toFloat(), 30f, bubblePaint)
-    }
+     }
 }
