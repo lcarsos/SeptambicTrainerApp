@@ -1,5 +1,10 @@
 package com.lcarsos.septambictrainer
 
+/**
+ * This layout is the Modified NASA layout used in the Spiffchorder.
+ * https://chorder.cs.vassar.edu/doku.php?id=spiffchorder:modified_nasa:chart_alphanumeric_keys
+ */
+
 val KEYER = arrayOf(
     KeyerValue.Null,
     KeyerValue.LowercaseW,
@@ -18,6 +23,7 @@ val KEYER = arrayOf(
     KeyerValue.LowercaseE,
     KeyerValue.LowercaseT,
     KeyerValue.Space,
+
     KeyerValue.LowercaseF,
     KeyerValue.LowercaseG,
     KeyerValue.LowercaseV,
@@ -34,6 +40,7 @@ val KEYER = arrayOf(
     KeyerValue.LowercaseA,
     KeyerValue.LowercaseO,
     KeyerValue.Shift,
+
     KeyerValue.Function,
     KeyerValue.Escape,
     KeyerValue.Semicolon,
@@ -58,7 +65,7 @@ val KEYER = arrayOf(
  *
  * Clearly, a septambic keyer only needs 7 bits.
  */
-enum class KeyerValue(value: String) {                           // PRMI NCF
+enum class KeyerValue(val display: String) {                           // PRMI NCF
     Null(""),                       // 0000 000
     Unused(""),
     LowercaseW("w"),                // 1000 000
@@ -77,7 +84,7 @@ enum class KeyerValue(value: String) {                           // PRMI NCF
     LowercaseE("e"),                // 0111 000
     LowercaseT("t"),                // 1111 000
 
-    Space(" "),                     // 0000 010
+    Space("␣"),                     // 0000 010
 
     LowercaseF("f"),                // 1000 010
     LowercaseG("g"),                // 0100 010

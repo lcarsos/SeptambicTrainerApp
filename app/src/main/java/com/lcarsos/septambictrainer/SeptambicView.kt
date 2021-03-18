@@ -24,9 +24,11 @@ val COLORS = listOf(
 
 class SeptambicView(context: Context, attrs: AttributeSet): View(context, attrs) {
 
+    val density = resources.displayMetrics.density
     val bubblePaint = Paint()
     val blackPaint = Paint()
     val greenPaint = Paint()
+    val textPaint = Paint()
     val hand = HandTracker()
 
     val actionIndexToFingerMap = HashMap<Int, FingerTracker?>()
@@ -37,6 +39,8 @@ class SeptambicView(context: Context, attrs: AttributeSet): View(context, attrs)
         blackPaint.style = Paint.Style.STROKE
         greenPaint.color = Color.GREEN
         greenPaint.style = Paint.Style.STROKE
+        textPaint.color = Color.BLACK
+        textPaint.textSize = 72f * density // 72dp
     }
 
     /**
@@ -84,6 +88,11 @@ class SeptambicView(context: Context, attrs: AttributeSet): View(context, attrs)
         }
         for (finger in fingers) {
             canvas.drawRect(finger.fingerBounds!!, if (finger.active) greenPaint else blackPaint)
+        }
+        val keyerVal = hand.getValue()
+        if (keyerVal != KeyerValue.Null && keyerVal != KeyerValue.Unused) {
+            val width = textPaint.measureText(keyerVal.display)
+            canvas.drawText(keyerVal.display, getWidth() - (100f * density) - width, 100f * density, textPaint)
         }
     }
 

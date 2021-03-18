@@ -23,13 +23,15 @@ class HandTracker {
     }
 
     fun getValue(): KeyerValue {
-        return KEYER[(if (pinky.active) pinky.bitmask else 0) or
+        val bitval = (if (pinky.active) pinky.bitmask else 0) or
                 (if (ring.active) ring.bitmask else 0) or
                 (if (middle.active) middle.bitmask else 0) or
                 (if (index.active) index.bitmask else 0) or
                 (if (center.active) center.bitmask else 0) or
                 (if (near.active) near.bitmask else 0) or
-                (if (far.active) far.bitmask else 0)]
+                (if (far.active) far.bitmask else 0)
+        System.out.println("bitwise 0x%x".format(bitval))
+        return if (bitval < KEYER.size) KEYER[bitval] else KeyerValue.Null
     }
 
     fun registerTouch(point: Point): FingerTracker? {
@@ -74,7 +76,7 @@ class HandTracker {
     }
 
     fun trackedFingers(): List<FingerTracker> {
-        return listOf(pinky, ring, middle, index, near, center, far).filter { i -> i.fingerBounds != null }
+        return listOf(pinky, ring, middle, index, center, near, far).filter { i -> i.fingerBounds != null }
     }
 }
 
